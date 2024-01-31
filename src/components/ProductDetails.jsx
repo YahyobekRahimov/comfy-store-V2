@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import Header from "./Header/Header";
 import Container from "./Container";
 import { useEffect, useState } from "react";
+import Select from "./Select";
 
 export default function ProductDetails() {
    const [product, setProduct] = useState();
@@ -42,8 +43,33 @@ export default function ProductDetails() {
                         </p>
                         <div className="mt-6">
                            <h4>Colors</h4>
-                           <div></div>
+                           <div>
+                              {product.colors &&
+                                 product.colors.map(
+                                    (color, index) => (
+                                       <button
+                                          className="badge w-6 h-6 mr-2 border-2 border-secondary"
+                                          style={{
+                                             backgroundColor: color,
+                                          }}
+                                       ></button>
+                                    )
+                                 )}
+                           </div>
                         </div>
+                        <Select
+                           id="amount"
+                           label="Amount"
+                           name="amount"
+                           options={[1, 2, 3, 4, 5, 6, 7, 8].map(
+                              (num) => (
+                                 <option value={num}>{num}</option>
+                              )
+                           )}
+                        />
+                        <button className="btn btn-secondary btn-md mt-5 mb-10">
+                           ADD TO BAG
+                        </button>
                      </div>
                   </div>
                )}
