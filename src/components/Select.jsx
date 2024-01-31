@@ -4,6 +4,7 @@ export default function Select({
    name,
    options,
    className,
+   inputRef,
 }) {
    return (
       <div className="form-control" key={id}>
@@ -14,6 +15,7 @@ export default function Select({
             name={name}
             id={id}
             className={`select select-bordered select-sm ${className}`}
+            ref={inputRef}
          >
             {options}
          </select>

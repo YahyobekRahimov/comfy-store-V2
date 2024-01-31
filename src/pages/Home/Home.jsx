@@ -74,6 +74,7 @@ export default function Home() {
                               <ProductCard
                                  product={data.attributes}
                                  id={id}
+                                 key={index}
                               />
                            );
                         })}
