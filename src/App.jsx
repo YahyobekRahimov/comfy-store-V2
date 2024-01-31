@@ -7,6 +7,7 @@ import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Products from "./pages/Products/Products";
 import Cart from "./pages/Cart/Cart";
+import ProductDetails from "./components/ProductDetails";
 
 function App() {
    const router = createBrowserRouter([
@@ -15,16 +16,20 @@ function App() {
          element: <Home />,
       },
       {
-         path: "about",
+         path: "/about",
          element: <About />,
       },
       {
-         path: "products",
+         path: "/products",
          element: <Products />,
       },
       {
-         path: "cart",
+         path: "/cart",
          element: <Cart />,
+      },
+      {
+         path: "/products/:id",
+         element: <ProductDetails />,
       },
    ]);
    return <RouterProvider router={router} />;
