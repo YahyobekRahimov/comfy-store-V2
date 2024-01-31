@@ -7,8 +7,23 @@ import Hero1 from "/src/assets/images/hero1-deae5a1f.webp";
 import Hero2 from "/src/assets/images/hero2-2271e3ad.webp";
 import Hero3 from "/src/assets/images/hero3-a83f0357.webp";
 import Hero4 from "/src/assets/images/hero4-4b9de90e.webp";
+import { useEffect, useState } from "react";
+import ProductCard from "../../components/ProductCard";
 
 export default function Home() {
+   const [featuredProducts, setFeaturedProducts] = useState([]);
+   useEffect(() => {
+      fetch(
+         "https://strapi-store-server.onrender.com/api/products?featured=true"
+      )
+         .then((response) => response.json())
+         .then((json) => setFeaturedProducts(json.data))
+         .catch((err) => console.log(err));
+   }, []);
+
+   useEffect(() => {
+      console.log(featuredProducts);
+   }, [featuredProducts]);
    return (
       <>
          <Header />
@@ -51,7 +66,18 @@ export default function Home() {
                         Featured products
                      </h2>
                   </div>
-                  <div className="pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3"></div>
+                  <div className="pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                     {featuredProducts &&
+                        featuredProducts.map((data, index) => {
+                           const { id } = data;
+                           return (
+                              <ProductCard
+                                 product={data.attributes}
+                                 id={id}
+                              />
+                           );
+                        })}
+                  </div>
                </Container>
             </section>
          </main>

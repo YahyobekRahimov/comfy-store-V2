@@ -6,7 +6,7 @@ export default function Select({
    className,
 }) {
    return (
-      <div className="form-control">
+      <div className="form-control" key={id}>
          <label htmlFor={id} className="label">
             <span className="label-text capitalize">{label}</span>
          </label>
